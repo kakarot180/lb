@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        // let obj = { };
+        // obj["yes"] = true;
+        // obj.no = false;
+
+
+        // let message = { 
+        //     name : "kakarot",
+        //     age : 16,
+        //     sex : 0,
+        //     vocation : "student"
+        // };
+
+        // {
+        //     let select = prompt("输入查询对象：name/age/sex/vocation");
+        //     alert( `您查询的${select}的信息为：${message[select]}` );       //用[]作为对象与属性的连接符，可以支持变量
+        //     // alert( `您查询的${select}的信息为：${message.select}` );    //这里用.连接符 为undefined;因为不支持变量
+        // }
+4
+        function createObj(count) { 
+            let createObj = { };
+            for(let i = 0; i < count ; i++){ 
+                let insertAttr = prompt("请输入插入对象属性名：");
+                let insertVal = prompt("请输入插入属性值：");
+                createObj[insertAttr] = insertVal;
+            }
+            alert(`数据插入成功`);
+            document.write(`成功插入${count}条数据！<br>`);
+            for (let key in createObj) {
+                document.write( `插入的属性：${ key } ,对应的属性值：${ createObj[key] } <br>` );
+            }
+        }
+        createObj(+prompt("请输入插入数量"))
+        
+ 
+    </script>
+</body>
+</html>

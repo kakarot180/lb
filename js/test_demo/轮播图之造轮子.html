@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            flex: 0 0 auto;
+        }
+        ul{
+            list-style-type: none;
+        }
+        a{
+            text-decoration: none;
+            color: #000000;
+        }
+        .kakarot_rotation{
+            width: 1000px;
+            height: 562.5px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .kakarot_rotation .rotationBox_item{
+            display: flex;
+            /* flex-direction: column; */
+            font-size: 0;
+        }
+        .kakarot_rotation .rotation_list{
+            width: 100%;
+        }
+        .kakarot_rotation .rotation_list>img{
+            width: 100%;
+        }
+
+        .kakarot_rotation .rotation_btn>li{
+            position:absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            cursor: pointer;
+        }
+        .kakarot_rotation .rotation_btn>.left{
+            left: 0;
+        }
+        .kakarot_rotation .rotation_btn>.right{
+            right: 0;
+        }
+
+        .kakarot_rotation .identifier_item{
+            display: flex;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 30px;
+        }
+        .kakarot_rotation .identifier_list{
+            margin: 0 10px;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            border: 1px #fff solid;
+            background-color: #000000;
+            cursor: pointer;
+        }
+        .kakarot_rotation .identifier_active{
+            border-color: #000000;
+            background-color: #fff;
+        }
+        /* @media (max-width : 768px) {
+            .kakarot_rotation{
+                width: 100%;
+                height: unset;
+            }
+            .kakarot_rotation .rotation_btn>li{
+                font-size: 30px;
+            }
+        } */
+    </style>
+</head>
+<body>
+    <div class="kakarot_rotation">
+        <!--储存图片-->
+        <div class="rotationBox_item">
+            <div class="rotation_list">
+                <img src="./img/test-1.png" alt="">
+            </div>
+            <div class="rotation_list">
+                <img src="./img/test-2.png" alt="">
+            </div>
+            <div class="rotation_list">
+                <img src="./img/test-3.png" alt="">
+            </div>
+            <div class="rotation_list">
+                <img src="./img/test-4.png" alt="">
+            </div>
+            <div class="rotation_list">
+                <img src="./img/test-5.png" alt="">
+            </div>
+        </div>
+        <!--储存左右按钮-->
+        <ul class="rotation_btn">
+            <li class="left">👈</li>
+            <li class="right">👉</li>
+        </ul>
+        <!--存储图片选择按钮-->
+        <ul class="identifier_item"></ul>
+    </div>
+
+    <script src="../js_library/kakrot.js"></script>
+
+    <script>
+        "use strict";
+
+        let options = {
+            direction : '',   //运动方式：  'default'、' '默认为左右，column为上下    记得更改css样式
+            delay : '0.5s',    //可设置毫秒，或者s，加入单位即可
+            autoPlay : true,    //是否自动播放，默认为true自动播放
+            autoPlayDelay : 1500,    //毫秒，若autoplay为false那么这里可以忽略
+            isIdentifier : true,    //默认为true显示圆点指示器，false隐藏
+        }
+        rotation_animation(options)
+    </script>
+</body>
+</html>

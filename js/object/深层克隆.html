@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深层克隆</title>
+</head>
+<body>
+    <script src="../js_library/kakrot.js"></script>
+    <script>
+        let obj = {
+            name : "kakarot",
+            sizeObj : {
+                sex : "男",
+                age : 18,
+                fun : function demo() {
+                    return 6;
+                },
+                sObj : {
+                    1 : '贝吉塔',
+                    2 : '孙悟饭',
+                }
+            },
+            func : function test() {
+                return 5;
+            },
+            arr : [
+                1,2,3
+            ]
+        }
+        // 深度克隆
+        function __DeepCopy(obj) {
+            let newObj = {};
+            for (let i in obj) {
+                if (typeof obj[i] === 'object'){        //判断对象的这条属性是否为对象
+                    newObj[i] = __DeepCopy(obj[i]);     //若是对象进行嵌套调用
+                }else{
+                    newObj[i] = obj[i];
+                }
+            }
+            return newObj;
+        }
+
+        let cloneObj = __DeepCopy(obj);
+        cloneObj.func = function changeTest() {
+            return "change";
+        };
+        cloneObj.sizeObj.fun = function changeDemo() {
+            return "changeDemo";
+        }
+        console.log(obj);
+        console.log(cloneObj);
+        console.log(cloneObj.arr == obj.arr);                       //false
+        console.log(cloneObj.sizeObj.fun == obj.sizeObj);           //false
+        console.log(cloneObj.sizeObj.sObj == obj.sizeObj.sObj);     //false
+    </script>
+</body>
+</html>

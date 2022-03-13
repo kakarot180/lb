@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>克隆合并与引用</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        let userName = {
+            id : 1,
+            name : "kakarot",
+            age : 17,
+            sex : "女",
+        }
+        let userHobby = {
+            hobby1 : "Code",
+            hobby2 : "LOL",
+            hobby3 : "sleep",
+            sex : "男",
+        }
+//合并对象  Object.assign(目标对象,参数源对象n1,...n2,...n3,...);   如果有相同的属性，那么会覆盖,以最后的参数对象为准
+        Object.assign(userName,userHobby);
+        console.log(userName);
+
+//克隆对象  克隆后改变对象内容，并不会改变原对象
+        /*
+        *第一种克隆
+        *这里通过for in 循环进行克隆
+        *
+        */
+        let cloneObj1 = {};
+        for(let key in userName){
+            cloneObj1[key] = userName[key];
+        }
+        console.log(cloneObj1);
+
+        /*
+        *第二种克隆
+        *这里通过声明一个空数组，再使用合并对象的方法，可进行克隆对象
+        */
+        let cloneObj2 = {};
+        Object.assign(cloneObj2,userName);
+        console.log(cloneObj2);
+
+//引用对象  但是通过引用对象更改内容后，原对象也将更改
+        let obj = {
+            name : "卡卡罗特",
+            hobby : "dragon ball"
+        }
+        let impObj = obj;
+        impObj.name = 'kakarot';
+        console.log(`obj：${obj.name}`);
+        console.log(`impObj：${impObj.name}`);
+
+    </script>
+</body>
+</html>

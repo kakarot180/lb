@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>构造器与操作符 "new"</title>
+</head>
+<body>
+    <script>
+        let user = new User();
+        function User() {
+            //这里有隐式this = {};
+            this.name = "卡卡罗特";
+            this.age = 17;
+            //这里有隐式return this
+        }
+        console.log(`name：${user.name}`);
+        console.log(`age：${user.age}`);
+
+        let userVal = getUser();
+        /*
+        *上方写法
+        *等同
+        * 下方写法
+        */
+        function getUser() {
+            this.name = "贝吉塔";
+            this.age = 17;
+            return this;
+        }
+        console.log(`name：${userVal.name}`);
+        console.log(`age：${userVal.age}`);
+        /*
+        *上方写法
+        *等同
+        * 下方写法
+        */
+        let admin = new function () {
+            this.name= "管理员";
+            this.isAdmin = true;
+        }
+
+    </script>
+</body>
+</html>

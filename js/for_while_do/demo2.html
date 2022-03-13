@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        {
+            let i = 0;
+            for(;;){
+                //这里是数据类型转换
+                let p = +prompt("是否需要执行");    //prompt前方+号是将数据类型转为number
+                if(!p) break;   //在进行比较判断时，如果是非0的number那么转换为 true，所以这里!p的结果是false，输入字符串或者空时，将终止无限循环。
+            }
+        }
+        
+        {
+            let i = 0;
+            do{
+                i++;
+                alert(`执行次数${i}`);
+            }while(i=0)
+
+            for(;i<3;){
+                alert(`执行次数${i++}`)
+            }
+        }
+
+        {
+            let i = 0;
+            // continue;终止本次循环，强制启动下一轮循环
+            for(;i<10;){
+                i++;
+                if(i == 6) continue;
+                document.write(i);  //理应输出1、2、3、4、...10，但因为上方if + continue 所以i=6时终止本次并启动下一轮循环
+            }
+        }
+
+        {
+            let i = 0;
+            while(i < 3){
+                alert(i);
+                i++;
+            }
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象与方法中的this</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        let obj1 = {
+            name : "kakarot",
+            sayHi(){
+                return `Hi！${this.name}`      //这里的this指向的是对象本身 obj
+            },
+        }
+        document.write(obj1.sayHi());
+
+        let sayHi = () => { return this };  //方法这里指向的是全局
+        console.log(sayHi());
+
+        let obj2 = {
+            name : "torankesu",
+        }
+
+        let getName1 = () => { console.log(this.name) };
+        function getName2() {
+            console.log(this);
+        }
+        obj1.func = getName1;
+        obj2.func = getName2;
+        obj1.func();   //这里赋值的是箭头函数创建的方法,这里并没有log输出，因为它外部没有正常函数，所以指向的全局
+        obj2.func();   //这里赋值的是function创建的方法，所以能正常输出，因为func中this指向的函数本身，而本身又赋值给一个对象，所以能正常输出obj2对象中的name属性
+    /*
+    *    总结
+    *
+    *    存储在对象属性中的函数被称为“方法”。
+    *
+    *    方法允许对象进行像 object.doSomething() 这样的“操作”。
+    *
+    *    方法可以将对象引用为 this。
+    *
+    *    this 的值是在程序运行时得到的。
+    *
+    *    一个函数在声明时，可能就使用了 this，但是这个 this 只有在函数被调用时才会有值。
+    *
+    *    可以在对象之间复制函数。
+    *
+    *    以“方法”的语法调用函数时：object.method()，调用过程中的 this 值是 object。
+    *
+    *    请注意箭头函数有些特别：它们没有 this。在箭头函数内部访问到的 this 都是从外部获取的。
+    */
+    </script>
+</body>
+</html>

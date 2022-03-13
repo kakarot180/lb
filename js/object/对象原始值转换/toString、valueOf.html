@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        toString/valueOf
+            如果没有 Symbol.toPrimitive，那么 JavaScript 将尝试寻找 toString 和 valueOf 方法：
+
+            对于 “string” hint：toString，如果它不存在，则 valueOf（因此，对于字符串转换，优先 toString）。
+            对于其他 hint：valueOf，如果它不存在，则 toString（因此，对于数学运算，优先 优先 valueOf）。
+            toString 和 valueOf 方法很早己有了。它们不是 symbol（那时候还没有 symbol 这个概念），而是“常规的”字符串命名的方法。它们提供了一种可选的“老派”的实现转换的方法。
+
+            这些方法必须返回一个原始值。如果 toString 或 valueOf 返回了一个对象，那么返回值会被忽略（和这里没有方法的时候相同）。
+
+            默认情况下，普通对象具有 toString 和 valueOf 方法：
+
+            toString 方法返回一个字符串 "[object Object]"。
+            valueOf 方法返回对象自身。
+        */
+        "use strict";
+        let user = {
+            name: "John",
+            money: 1000,
+            // 对于 hint="string"
+            toString() {
+                return `{name: "${this.name}"}`;
+            },
+            // 对于 hint="number" 或 "default"
+            valueOf() {
+                return this.money;
+            }
+        };
+        alert(user); // toString -> {name: "John"}
+        alert(+user); // valueOf -> 1000
+        alert(user + 500); // valueOf -> 1500
+    </script>
+</body>
+</html>
