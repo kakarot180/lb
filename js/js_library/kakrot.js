@@ -20,6 +20,7 @@ function rotation_animation(options) {
     let getIdentifier = document.querySelector('.identifier_item');
     let createIdentifier = '';
     let getIdentifierChild  = getIdentifier.childNodes;
+    let direct = '';
     let moveW = 0;
     let moveH = 0;
     let j = 0;
@@ -59,13 +60,15 @@ function rotation_animation(options) {
         if(options.direction == '' || options.direction == 'default'){
             moveW = getImages[0].offsetWidth * j;
             moveH = 0;
+            direct = 'flex-direction:row';
         }else if(options.direction == 'column'){
             moveH = getImages[0].offsetHeight * j;
             moveW = 0;
+            direct = 'flex-direction:column';
         }
         notNode(getIdentifier.childNodes,j)
         getIdentifierChild[j].className += ' identifier_active';
-        getImagesBox.style.cssText = `transform:translate(-${moveW}px,-${moveH}px);transition:transform ${options.delay};`;
+        getImagesBox.style.cssText = `transform:translate(-${moveW}px,-${moveH}px);transition:transform ${options.delay};${direct};`;
     };
 
     for(let i = 0 ;i < getIdentifierChild.length ; i++){
